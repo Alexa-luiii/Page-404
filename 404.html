@@ -27,12 +27,14 @@
             background-color: var(--bg-color);
             color: var(--text-white);
             font-family: 'Space Mono', monospace;
-            overflow: hidden;
+            overflow-x: hidden;
+            overflow-y: auto;
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             text-align: center;
+            padding: 40px 0;
         }
 
         #stars {
@@ -112,7 +114,7 @@
             display: flex;
             gap: 16px;
             justify-content: center;
-            margin-top: 2rem;
+            margin-top: 3.5rem; /* Increased padding/margin to upside */
         }
 
         .btn {
