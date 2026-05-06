@@ -27,14 +27,12 @@
             background-color: var(--bg-color);
             color: var(--text-white);
             font-family: 'Space Mono', monospace;
-            overflow-x: hidden;
-            overflow-y: auto;
+            overflow: hidden; /* No scroll */
             display: flex;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            height: 100vh;
             text-align: center;
-            padding: 40px 0;
         }
 
         #stars {
@@ -44,21 +42,6 @@
             width: 100%;
             height: 100%;
             z-index: -1;
-        }
-
-        .container {
-            width: 100%;
-            max-width: 800px;
-            padding: 20px;
-            z-index: 1;
-            opacity: 0;
-            transform: scale(0.9);
-            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .container.visible {
-            opacity: 1;
-            transform: scale(1);
         }
 
         .backdrop {
@@ -79,42 +62,61 @@
             opacity: 1;
         }
 
+        .container {
+            width: 95%;
+            max-width: 700px;
+            padding: 20px;
+            z-index: 1;
+            opacity: 0;
+            transform: scale(0.9);
+            transition: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+            background: rgba(10, 11, 24, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .container.visible {
+            opacity: 1;
+            transform: scale(1);
+        }
+
         .badge {
             display: inline-block;
-            padding: 4px 12px;
+            padding: 2px 10px;
             border-radius: 100px;
             background: rgba(79, 142, 255, 0.1);
             color: var(--blue);
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: bold;
             letter-spacing: 0.1em;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
         }
 
         h1 {
             font-family: 'Syne', sans-serif;
-            font-size: clamp(4rem, 15vw, 8rem);
+            font-size: 3rem; /* Smaller font size as requested */
             font-weight: 800;
             line-height: 1;
-            margin-bottom: 1rem;
+            margin-bottom: 0.5rem;
             background: linear-gradient(to bottom, #fff, var(--blue));
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         .subtitle {
-            font-size: 1.1rem;
-            margin-bottom: 2rem;
+            font-size: 0.9rem;
+            margin-bottom: 1.5rem;
             color: var(--text-white);
-            opacity: 0.9;
+            opacity: 0.8;
         }
 
         .game-card {
-            background: rgba(10, 11, 24, 0.8);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 16px;
-            padding: 24px;
-            margin-bottom: 2rem;
+            background: rgba(5, 6, 15, 0.5);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            border-radius: 12px;
+            padding: 16px;
+            margin-bottom: 1.5rem;
             position: relative;
         }
 
@@ -122,8 +124,9 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 12px;
-            font-size: 0.9rem;
+            margin-bottom: 8px;
+            font-size: 0.8rem;
+            color: var(--text-muted);
         }
 
         #gc {
@@ -131,48 +134,48 @@
             height: auto;
             aspect-ratio: 660 / 230;
             background: #080914;
-            border-radius: 8px;
+            border-radius: 6px;
             display: block;
             touch-action: none;
         }
 
         .controls {
             display: flex;
-            gap: 16px;
+            gap: 12px;
             justify-content: center;
-            margin-top: 3.5rem; /* Increased padding/margin to upside */
+            margin-bottom: 1rem;
         }
 
         .btn {
-            padding: 12px 28px;
+            padding: 8px 20px; /* Smaller buttons */
             border-radius: 100px;
             font-family: 'Space Mono', monospace;
-            font-size: 1rem;
+            font-size: 0.85rem;
             font-weight: bold;
             cursor: pointer;
             transition: all 0.2s;
             text-decoration: none;
             display: inline-flex;
             align-items: center;
-            gap: 8px;
+            gap: 6px;
         }
 
         .btn-home {
             background-color: var(--blue);
             color: white;
             border: none;
-            box-shadow: 0 4px 15px rgba(79, 142, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(79, 142, 255, 0.2);
         }
 
         .btn-home:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(79, 142, 255, 0.5);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 15px rgba(79, 142, 255, 0.4);
         }
 
         .btn-retry {
             background: transparent;
             color: var(--text-muted);
-            border: 1px solid rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.15);
         }
 
         .btn-retry:hover {
@@ -181,20 +184,16 @@
         }
 
         footer {
-            margin-top: 2.5rem;
-            font-size: 0.7rem;
+            font-size: 0.65rem;
             color: var(--text-muted);
+            opacity: 0.6;
         }
 
-        @media (max-width: 600px) {
-            .controls {
-                flex-direction: column;
-                align-items: center;
-            }
-            .btn {
-                width: 100%;
-                justify-content: center;
-            }
+        @media (max-height: 600px) {
+            h1 { font-size: 2rem; }
+            .subtitle { margin-bottom: 1rem; }
+            .game-card { padding: 10px; margin-bottom: 1rem; }
+            .container { padding: 15px; }
         }
     </style>
 </head>
